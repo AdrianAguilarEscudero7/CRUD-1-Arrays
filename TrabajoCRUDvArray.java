@@ -3,7 +3,7 @@
  *
  * @author Adrián Aguilar
  */
- import java.util.Scanner;
+import java.util.Scanner;
 
 public class TrabajoCRUDvArray {
   
@@ -11,13 +11,6 @@ public class TrabajoCRUDvArray {
   
   public static void main(String[] args) {
     Scanner s = new Scanner(System.in);
-    Scanner m = new Scanner(System.in);
-    Scanner mod = new Scanner(System.in);
-    Scanner c = new Scanner(System.in);
-    Scanner t = new Scanner(System.in);
-    Scanner p = new Scanner(System.in);
-    Scanner sp = new Scanner(System.in);
-    Scanner volver = new Scanner(System.in);
     
     System.out.println("\nGestión de hardware - Teclados");
     System.out.println("-----------------------------------------------------------------------------");
@@ -81,7 +74,7 @@ public class TrabajoCRUDvArray {
         System.out.println("4.- Borrar.");
         System.out.println("5.- Salir.");
         System.out.print("\nPor favor, seleccione una opción del menú: ");
-        opcionMenu = s.nextInt();
+        opcionMenu = Integer.parseInt(s.nextLine());
         if ((opcionMenu < 1) || (opcionMenu > 5)) {
           System.out.println("\nHa de seleccionar una opción del menú... (1-5).");
         }
@@ -96,20 +89,20 @@ public class TrabajoCRUDvArray {
           int otroArticulo;
           do {
             System.out.print("\nIntroduzca la marca del teclado: ");
-            String sMarca = m.nextLine();
+            String sMarca = s.nextLine();
             System.out.print("\nIntroduzca el modelo del teclado: ");
-            String sModelo = mod.nextLine();
+            String sModelo = s.nextLine();
             System.out.print("\nIntroduzca la conectividad del teclado: ");
-            String sConect = c.nextLine();
+            String sConect = s.nextLine();
             System.out.print("\nIntroduzca el tipo de teclado: ");
-            String sTipo = t.nextLine();
+            String sTipo = s.nextLine();
             System.out.print("\nIntroduzca el precio del teclado: ");
-            float fPrecio = p.nextInt();
+            float fPrecio = Float.parseFloat(s.nextLine());;
             añadeArticulo(marca,modelo,conect,tipo,precio,sMarca,sModelo,sConect,sTipo,fPrecio);
             
             System.out.println("---------------------------------------------------------------------");
             System.out.print("\nPulse 1 para añadir otro artículo, o, cualquier otro número para salir: ");
-            otroArticulo = s.nextInt();
+            otroArticulo = Integer.parseInt(s.nextLine());
           } while (otroArticulo == 1);
         break;
         case 3:
@@ -122,34 +115,34 @@ public class TrabajoCRUDvArray {
           do {
             salir = false;
             System.out.print("\nSeleccione el número de fila que desea editar: ");
-            int editFila = s.nextInt();
+            int editFila = Integer.parseInt(s.nextLine());
             if (marca[editFila-1].equals("Vacío")) {
               System.out.println("\n¡En esa fila no hay ningún artículo!, por favor, añada uno nuevo.");
             } else {
               for (int i = 1; i <= 10 && !salir; i++) {
                 if (i == editFila) {
                   System.out.print("\nIntroduzca la nueva marca de teclado (pulse [Intro] para dejar igual): ");
-                  String sMarca = m.nextLine();
+                  String sMarca = s.nextLine();
                   if (!sMarca.equals(intro)) {
                     marca[i-1] = sMarca;
                   } else {
                     System.out.print("\nIntroduzca el nuevo modelo de teclado (pulse [Intro] para dejar igual): ");
-                    String sModelo = mod.nextLine();
+                    String sModelo = s.nextLine();
                     if (!sModelo.equals(intro)) {
                       modelo[i-1] = sModelo;
                     } else {
                       System.out.print("\nIntroduzca la nueva conectividad del teclado (pulse [Intro] para dejar igual): ");
-                      String sConect = c.nextLine();
+                      String sConect = s.nextLine();
                       if (!sConect.equals(intro)) {
                         conect[i-1] = sConect;
                       } else {
                         System.out.print("\nIntroduzca el nuevo tipo de teclado (pulse [Intro] para dejar igual): ");
-                        String sTipo = t.nextLine();
+                        String sTipo = s.nextLine();
                         if (!sTipo.equals(intro)) {
                           tipo[i-1] = sTipo;
                         } else {
                           System.out.print("\nIntroduzca el nuevo precio del teclado (pulse [Intro] para dejar igual): ");
-                          String sPrecio = sp.nextLine();
+                          String sPrecio = s.nextLine();
                           if (!sPrecio.equals(intro)) {
                             precio[i-1] = Float.parseFloat(sPrecio);
                           } else {
@@ -164,7 +157,7 @@ public class TrabajoCRUDvArray {
             }
             System.out.println("---------------------------------------------------------------------");
             System.out.print("\nPulse 1 para editar otro artículo, o, cualquier otro número para salir: ");
-            editarOtro = s.nextInt();
+            editarOtro = Integer.parseInt(s.nextLine());
           } while (editarOtro == 1);
           break;
           case 4:
@@ -176,7 +169,7 @@ public class TrabajoCRUDvArray {
             do {
               salir2 = false;
               System.out.print("\nSeleccione el número de fila que desea borrar: ");
-              int borrarFila = s.nextInt();
+              int borrarFila = Integer.parseInt(s.nextLine());
               for (int i = 1; i <= 10 && !salir2; i++) {
                 if (i == borrarFila) {
                   marca[i-1] = "Vacío";
@@ -189,7 +182,7 @@ public class TrabajoCRUDvArray {
               }
               System.out.println("---------------------------------------------------------------------");
               System.out.print("\nPulse 1 para borrar otro artículo, o, cualquier otro número para salir: ");
-              borrarOtro = s.nextInt();
+              borrarOtro = Integer.parseInt(s.nextLine());
             } while (borrarOtro == 1);
           break;
         default:
@@ -197,7 +190,7 @@ public class TrabajoCRUDvArray {
       // Vuelve al menú de nuevo si la opción seleccionada es distinta a 5 (salir)
       if (opcionMenu != 5) {
           System.out.print("\nPulse [Intro] para volver al menú.");
-          volver.nextLine();
+          s.nextLine();
       } else {
         System.out.println("\n¡Hasta pronto!.");
       }
